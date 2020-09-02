@@ -1,0 +1,15 @@
+{{- $saFullName := include "jsontest.fullname" . -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "jsontest.fullname" . }}
+  labels:
+  {{- include "jsontest.labels" . | nindent 4 }}
+data:
+{{/*  MODE1: |-*/}}
+{{/*    {{- .Values.jsonconfig | nindent 4 }}*/}}
+{{/*  MODE3: |-*/}}
+{{/*    {{- .Values.jsonconfig | toJson | nindent 4 }}*/}}
+  MODE3: {{ .Values.jsonconfig | squote }}
+  MODE4: {{ .Values.jsonconfig | toJson | replace "\\n" ""  }}
+{{/*  MODE6: {{ .Values.jsonconfig | replace "\n" "" | toJson  }}*/}}

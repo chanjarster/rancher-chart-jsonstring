@@ -1,0 +1,13 @@
+labels:
+  io.cattle.role: project # options are cluster/project
+  io.rancher.app_min_version: 9.0.2
+categories:
+
+questions:
+
+- variable: jsonconfig
+  label: "json config"
+  type: multiline
+  required: true
+  group: "Json Config"
+  default: "{}"
